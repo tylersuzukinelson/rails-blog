@@ -1,1 +1,14 @@
-<h1>Rails Blog</h1>
+<% @posts.each do |post| %>
+
+<h3>
+  <a href="/post/<%= post.id %>">
+    <%= post.title %>
+  </a>
+</h3>
+<p>
+  <%= post.body.gsub(/\n/, "<br />")[0..200] %>
+</p>
+
+<hr>
+
+<% end %>
