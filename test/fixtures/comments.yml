@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nested: false
+  parent: 1
+  author: MyString
+  email: MyString
+  body: MyText
+
+two:
+  nested: false
+  parent: 1
+  author: MyString
+  email: MyString
+  body: MyText
