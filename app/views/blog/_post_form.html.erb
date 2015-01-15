@@ -1,0 +1,27 @@
+<%= form_for @post do |f| %>
+<%# f.hidden_field(:author) %>
+  <table>
+    <tr>
+      <td>
+        <%= f.label :title %>
+      </td>
+      <td>
+        <%= f.text_field :title %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label "Post" %>
+      </td>
+      <td>
+        <%= f.text_area :body %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= f.submit %>
+      </td>
+    </tr>
+  </table>
+<% end %>

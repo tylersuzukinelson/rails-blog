@@ -1,5 +1,7 @@
 class CommentController < ApplicationController
 
-  post create
+  def create
+    
+  end
 
 end
