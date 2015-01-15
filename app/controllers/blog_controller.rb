@@ -3,7 +3,7 @@ class BlogController < ApplicationController
   before_action :authenticate, only: [:create, :new]
 
   def index
-    @posts = Blog.all.order("updated_at DESC")
+    @posts = Blog.all.order("created_at DESC")
   end
 
   def create
