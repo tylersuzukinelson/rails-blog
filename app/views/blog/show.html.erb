@@ -16,13 +16,22 @@
 <hr>
 <%= render "comment_form" %>
 <hr>
+<% indent_hash = {} %>
+<% indent_multiplier = 0 %>
 <% @comments.each do |comment| %>
-  <% if comment.id == @post.id %>
+<% if !comment.nested %>
+<% indent_multiplier = 0 %>
+<% elsif !indent_hash[comment.parent].nil? %>
+<% indent_multiplier = indent_hash[comment.parent] %>
+<% else %>
+<% indent_multiplier += 1 %>
+<% indent_hash[comment.parent] = indent_multiplier %>
+<% end %>
 
+<div style="margin-left: <%= indent_multiplier * 25 %>px">
 <a href="mailto:<%= comment.email %>"><%= comment.author %></a> says:<br />
 <%= comment.body.gsub(/\n/, "<br />") %>
+</div>
 
 <hr>
-
-  <% end %>
 <% end %>

@@ -26,7 +26,12 @@ class BlogController < ApplicationController
   def show
     @author = Author.find(@post.author)
     @post.increment!(:view_count)
-    @comments = Comment.all
+    @temp = Comment.all.where(nested: false).where(parent: @post.id)
+    @comments = []
+    @temp.each do |x|
+      @comments << x
+      @comments += x.get_nested_comments
+    end
     @comment = Comment.new
   end
 
