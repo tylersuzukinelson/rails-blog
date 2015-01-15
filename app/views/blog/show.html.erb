@@ -1,0 +1,26 @@
+<h3>
+  <%= @post.title %>
+</h3>
+<em>
+  Written by <%= mail_to @author.email, @author.username %>
+</em>
+|
+<%= @post.view_count %> views
+<br />
+<br />
+<%= @post.body.gsub(/\n/, "<br />") %>
+<br />
+<br />
+<hr>
+<%= render "comment_form" %>
+<hr>
+<% @comments.each do |comment| %>
+  <% if comment.id == @post.id %>
+
+<a href="mailto:<%= comment.email %>"><%= comment.author %></a> says:<br />
+<%= comment.body.gsub(/\n/, "<br />") %>
+
+<hr>
+
+  <% end %>
+<% end %>

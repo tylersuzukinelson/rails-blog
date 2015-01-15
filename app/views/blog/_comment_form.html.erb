@@ -1,0 +1,34 @@
+<%= form_for @comment do |f| %>
+  <table>
+    <tr>
+      <td>
+        <%= f.label "Your Name" %>
+      </td>
+      <td>
+        <%= f.text_field :author %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :email %>
+      </td>
+      <td>
+        <%= f.text_field :email %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label "Comment" %>
+      </td>
+      <td>
+        <%= f.text_area :body %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= f.submit %>
+      </td>
+    </tr>
+  </table>
+<% end %>

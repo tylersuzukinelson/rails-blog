@@ -1,12 +1,10 @@
 <% @posts.each do |post| %>
 
 <h3>
-  <a href="/post/<%= post.id %>">
-    <%= post.title %>
-  </a>
+  <%= link_to post.title, post %>
 </h3>
 <p>
-  <%= post.body.gsub(/\n/, "<br />")[0..200] %>
+  <%= post.html_summary %>
 </p>
 
 <hr>

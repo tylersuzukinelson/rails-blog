@@ -4,12 +4,21 @@ class BlogController < ApplicationController
     @posts = Blog.all.order("updated_at DESC")
   end
 
-  def post
+  def create
+    # TODO
+    render Text: "Herro"
+  end
+
+  def new
+    
+  end
+
+  def show
     @post = Blog.find(params[:id])
     @author = Author.find(@post.author)
-    @post.view_count += 1
-    @post.save
+    @post.increment!(:view_count)
     @comments = Comment.all
+    @comment = Comment.new
   end
 
 end

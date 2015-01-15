@@ -8,6 +8,14 @@ class Blog < ActiveRecord::Base
 
   after_initialize :set_default_counts
 
+  def html_summary
+    if body.length > 200
+      return "#{body.gsub(/\n/, "<br />")[0..200]}..."
+    else
+      return "#{body.gsub(/\n/, "<br />")}"
+    end
+  end
+
   private
 
   def author_exists
