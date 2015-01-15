@@ -3,6 +3,8 @@
 <h3>
   <%= link_to post.title, post %>
 </h3>
+[<%= link_to "edit", edit_blog_path(post) %>]
+[<%= link_to "delete", post, method: :delete, data: {confirm: "Are you sure? Deleting a post cannot be undone."} %>]
 <p>
   <%= post.html_summary %>
 </p>

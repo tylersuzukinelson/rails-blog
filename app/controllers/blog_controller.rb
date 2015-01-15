@@ -1,5 +1,5 @@
 class BlogController < ApplicationController
-
+  before_action :find_post, only: [:edit, :show, :update, :destroy]
   before_action :authenticate, only: [:create, :new]
 
   def index
@@ -7,12 +7,12 @@ class BlogController < ApplicationController
   end
 
   def create
-    post = Blog.new blog_params
-    post.author = session[:user_id]
-    if post.save
-      redirect_to post
+    @post = Blog.new blog_params
+    @post.author = session[:user_id]
+    if @post.save
+      redirect_to @post
     else
-      redirect_to new_blog_path, notice: post.errors.full_messages.join("; ")
+      redirect_to new_blog_path, notice: post_errors
     end
   end
 
@@ -20,12 +20,30 @@ class BlogController < ApplicationController
     @post = Blog.new
   end
 
+  def edit
+  end
+
   def show
-    @post = Blog.find(params[:id])
     @author = Author.find(@post.author)
     @post.increment!(:view_count)
     @comments = Comment.all
     @comment = Comment.new
+  end
+
+  def update
+    if @post.update(blog_params)
+      redirect_to @post
+    else
+      redirect_to @post, notice: post_errors
+    end
+  end
+
+  def destroy
+    if @post.destroy
+      redirect_to root_path
+    else
+      redirect_to @post, notice: post_errors
+    end
   end
 
   private
@@ -38,8 +56,16 @@ class BlogController < ApplicationController
     end
   end
 
+  def find_post
+    @post = Blog.find(params[:id])
+  end
+
   def blog_params
     params.require(:blog).permit([:title, :body])
+  end
+
+  def post_errors
+    @post.errors.full_messages.join("; ")
   end
 
 end

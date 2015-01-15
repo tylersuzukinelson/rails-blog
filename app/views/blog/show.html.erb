@@ -6,6 +6,8 @@
 </em>
 |
 <%= @post.view_count %> views
+[<%= link_to "edit", edit_blog_path(@post) %>]
+[<%= link_to "delete", @post, method: :delete, data: {confirm: "Are you sure? Deleting a post cannot be undone."} %>]
 <br />
 <br />
 <%= @post.body.gsub(/\n/, "<br />") %>
